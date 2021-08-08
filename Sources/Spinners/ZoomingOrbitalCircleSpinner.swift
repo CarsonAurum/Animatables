@@ -12,20 +12,20 @@ public struct ZoomingOrbitalCircleSpinner: View {
     public var body: some View {
         ZStack {
             Circle()
-                .frame(width: 30, height: 30)
+                .frame(width: 60, height: 60)
                 .foregroundColor(Color(red: 0, green: 0.5, blue: 1))
                 .scaleEffect(animate ? 1 : 0.5)
                 .animation(.interpolatingSpring(stiffness: 170, damping: 20).speed(1.5).repeatForever(autoreverses: true))
             ZStack {
                 Circle()
                     .trim(from: 3/4, to: 1)
-                    .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
-                    .frame(width: 50, height: 50)
+                    .stroke(style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+                    .frame(width: 100, height: 100)
                     .foregroundColor(Color(red: 0, green: 0.5, blue: 1))
                 Circle()
                     .trim(from: 3/4, to: 1)
-                    .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
-                    .frame(width: 50, height: 50)
+                    .stroke(style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
+                    .frame(width: 100, height: 100)
                     .foregroundColor(Color(red: 0, green: 0.5, blue: 1))
                     .rotationEffect(.degrees(-180))
             }
@@ -46,10 +46,9 @@ struct ZoomingOrbitalCircleSpinnerContainer: View {
 
     var body: some View {
         ZoomingOrbitalCircleSpinner(animate: $animating)
-            .scaleEffect(2)
     }
 }
-struct ZoomingOrbitalCircleSpinner_Previews: PreviewProvider { 
+struct ZoomingOrbitalCircleSpinner_Previews: PreviewProvider {
     static var previews: some View {
         ZoomingOrbitalCircleSpinnerContainer()
     }
