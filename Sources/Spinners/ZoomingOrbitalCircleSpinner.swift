@@ -49,7 +49,7 @@ struct ZoomingOrbitalCircleSpinnerContainer: View {
             .scaleEffect(2)
     }
 }
-struct ZoomingOrbitalCircleSpinner_Previews: PreviewProvider {
+struct ZoomingOrbitalCircleSpinner_Previews: PreviewProvider { 
     static var previews: some View {
         ZoomingOrbitalCircleSpinnerContainer()
     }

@@ -16,7 +16,7 @@ public struct AtomSpinner: View {
             case .spring:
                 return Animation.interpolatingSpring(stiffness: 60, damping: 13).repeatForever(autoreverses: true)
             case .ease:
-                return Animation.easeInOut(duration: 2).delay(0.5).repeatForever(autoreverses: true)
+                return Animation.easeInOut(duration: 1.5).delay(0.5).repeatForever(autoreverses: true)
             }
         }
     }
