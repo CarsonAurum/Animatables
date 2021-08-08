@@ -44,7 +44,8 @@ struct AtomSpinnerContainer: View {
         ZStack {
             Color(red: 0.0, green: 0.0, blue: 0.0)
                 .scaleEffect(1.2)
-            AtomSpinner(scaleRotate: $animating, animationType: .spring)
+            AtomSpinner(scaleRotate: $animating, animationType: .ease)
+                .scaleEffect(2)
         }
     }
 }
