@@ -23,6 +23,7 @@ public struct AtomSpinner: View {
 
     @Binding var scaleRotate: Bool
     @State var animationType: AnimationType
+    public var automatic: Bool = true
     public var body: some View {
         ZStack {
             Image("Atom", bundle: .module)
@@ -30,7 +31,9 @@ public struct AtomSpinner: View {
                 .rotationEffect(.degrees(scaleRotate ? 360 : 0), anchor: .center)
                 .animation(animationType.animation)
                 .onAppear {
-                    scaleRotate.toggle()
+                    if automatic {
+                        scaleRotate.toggle()
+                    }
                 }
         }
     }

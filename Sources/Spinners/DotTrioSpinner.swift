@@ -9,11 +9,11 @@ import SwiftUI
 
 public struct DotTrioSpinner: View {
     @Binding var animating: Bool
-    public let automatic: Bool = true
-    public let duration: Double = 1
-    public let topColor: Color = Color(red: 96/255, green: 174/255, blue: 201/255)
-    public let leftColor: Color = Color(red: 244/255, green: 132/255, blue: 177/255)
-    public let rightColor: Color = Color(red: 137/255, green: 192/255, blue: 188/255)
+    public var automatic: Bool = true
+    public var duration: Double = 1
+    public var topColor: Color = Color(red: 96/255, green: 174/255, blue: 201/255)
+    public var leftColor: Color = Color(red: 244/255, green: 132/255, blue: 177/255)
+    public var rightColor: Color = Color(red: 137/255, green: 192/255, blue: 188/255)
 
     public var body: some View {
         GeometryReader { proxy in

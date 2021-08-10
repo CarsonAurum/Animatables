@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+public struct Hexagon: Shape {
+    public func path(in rect: CGRect) -> Path {
+        Path { path in
+            path.move(to: CGPoint(x: rect.width / 2, y: 0))
+            path.addLine(to: CGPoint(x: rect.width, y: rect.height / 3))
+            path.addLine(to: CGPoint(x: rect.width, y: rect.height / 3 * 2))
+            path.addLine(to: CGPoint(x: rect.width / 2, y: rect.height))
+            path.addLine(to: CGPoint(x: 0, y: rect.height / 3 * 2))
+            path.addLine(to: CGPoint(x: 0, y: rect.height / 3))
+            path.addLine(to: CGPoint(x: rect.width / 2, y: 0))
+        }
+    }
+}
+
 public struct HexagonSpinner: View {
     @Binding var scaleCircle: Bool
     @Binding var rotateHexagon: Bool

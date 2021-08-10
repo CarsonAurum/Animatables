@@ -9,10 +9,13 @@ import SwiftUI
 
 public struct CircleSpinner3D: View {
     @Binding public var animating: Bool
+    public var automatic: Bool = true
+    public var duration: Double = 1
     public var color: Color = .blue
     public var body: some View {
         GeometryReader { proxy in
             ZStack {
+                // Outer Circle
                 Circle()
                     .stroke(lineWidth: proxy.size.width / 20)
                     .foregroundColor(color)
@@ -21,7 +24,8 @@ public struct CircleSpinner3D: View {
                         .degrees(animating ? 180 : 1),
                         axis: (x: animating ? 1 : 0, y: 0, z: 0)
                     )
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                    .animation(.easeInOut(duration: duration).repeatForever(autoreverses: true))
+                // Middle Circle
                 Circle()
                     .stroke(lineWidth: proxy.size.width / 20)
                     .foregroundColor(color)
@@ -30,7 +34,8 @@ public struct CircleSpinner3D: View {
                         .degrees(animating ? 360 : 1),
                         axis: (x: 0, y: animating ? 1 : 0, z: 0)
                     )
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                    .animation(.easeInOut(duration: duration).repeatForever(autoreverses: true))
+                // Inner Circle
                 Circle()
                     .stroke(lineWidth: proxy.size.width / 20)
                     .foregroundColor(color)
@@ -39,10 +44,12 @@ public struct CircleSpinner3D: View {
                         .degrees(animating ? 540 : 0),
                         axis: (x: animating ? 1 : 0, y: animating ? 1 : 0 , z: 0)
                     )
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true))
+                    .animation(.easeInOut(duration: duration).repeatForever(autoreverses: true))
             }
             .onAppear {
-                animating.toggle()
+                if automatic {
+                    animating.toggle()
+                }
             }
         }
     }
