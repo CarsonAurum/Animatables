@@ -61,7 +61,7 @@ struct SpinnerContainer: View {
             )
             .edgesIgnoringSafeArea(.all)
             CircleSpinner3D(animating: $animate)
-                .frame(width: 100, height: 100)
+                .frame(width: 100, height: 100, alignment: .center)
         }
     }
 }

@@ -9,29 +9,39 @@ import SwiftUI
 
 public struct DotTrioSpinner: View {
     @Binding var animating: Bool
-    let duration: Double = 1
-    let frame: CGSize = CGSize(width: 80, height: 80)
+    public let automatic: Bool = true
+    public let duration: Double = 1
+    public let topColor: Color = Color(red: 96/255, green: 174/255, blue: 201/255)
+    public let leftColor: Color = Color(red: 244/255, green: 132/255, blue: 177/255)
+    public let rightColor: Color = Color(red: 137/255, green: 192/255, blue: 188/255)
+
     public var body: some View {
-        ZStack {
-            Circle()
-                .fill(Color(red: 96/255, green: 174/255, blue: 201/255))
-                .frame(height: frame.height / 3)
-                .offset(x: 0, y: animating ? -frame.height / 3 : 0)
-            Circle()
-                .fill(Color(red: 244/255, green: 132/255, blue: 177/255))
-                .frame(height: frame.height / 3)
-                .offset(x: animating ? -frame.height / 3 : 0, y: animating ? frame.height / 3 : 0)
-            Circle()
-                .fill(Color(red: 137/255, green: 192/255, blue: 188/255))
-                .frame(height: frame.height / 3)
-                .offset(x: animating ? frame.height / 3 : 0, y: animating ? frame.height / 3 : 0)
-        }
-        .animation(.easeInOut(duration: duration).repeatForever(autoreverses: true))
-        .frame(width: frame.width, height: frame.height, alignment: .center)
-        .rotationEffect(.degrees(animating ? 360 : 0))
-        .animation(.easeInOut(duration: duration).repeatForever(autoreverses: false))
-        .onAppear {
-            animating.toggle()
+        GeometryReader { proxy in
+            ZStack {
+                // Top circle
+                Circle()
+                    .fill(topColor)
+                    .frame(height: proxy.size.height / 3)
+                    .offset(x: 0, y: animating ? -proxy.size.height / 3 : 0)
+                // Left circle
+                Circle()
+                    .fill(leftColor)
+                    .frame(height: proxy.size.height / 3)
+                    .offset(x: animating ? -proxy.size.height / 3 : 0, y: animating ? proxy.size.height / 3 : 0)
+                // Right circle
+                Circle()
+                    .fill(rightColor)
+                    .frame(height: proxy.size.height / 3)
+                    .offset(x: animating ? proxy.size.height / 3 : 0, y: animating ? proxy.size.height / 3 : 0)
+            }
+            .animation(.easeInOut(duration: duration).repeatForever(autoreverses: true))
+            .rotationEffect(.degrees(animating ? 360 : 0))
+            .animation(.easeInOut(duration: duration).repeatForever(autoreverses: false))
+            .onAppear {
+                if automatic {
+                    animating.toggle()
+                }
+            }
         }
     }
 }
@@ -43,6 +53,7 @@ struct DotTrioSpinnerContainer: View {
 
     var body: some View {
         DotTrioSpinner(animating: $animating)
+        .frame(width: 80, height: 80, alignment: .center)
     }
 }
 struct DotTrioSpinner_Previews: PreviewProvider {
