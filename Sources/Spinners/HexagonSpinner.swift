@@ -55,7 +55,15 @@ struct HexagonSpinnerContainer: View {
     @State private var rotating: Bool = false
     
     var body: some View {
-        HexagonSpinner(scaleCircle: $scaling, rotateHexagon: $rotating)
+        //HexagonSpinner(scaleCircle: $scaling, rotateHexagon: $rotating)
+        ZStack {
+        Hexagon()
+            .stroke(Color.yellow, lineWidth: 5)
+            .frame(width: 100, height: 100)
+        Hexagon()
+            .fill(.blue)
+            .frame(width: 100, height: 100)
+        }
     }
 }
 struct HexagonSpinner_Previews: PreviewProvider {
